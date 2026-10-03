@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#include<iostream.h>
+#include<conio.h>
 
 int getMax(int a[], int n)
 {
@@ -18,32 +18,29 @@ void countingSort(int a[], int n, int place)
 {
     int output[10];
     int count[10] = {0};
+    int i, digit;
 
-    // Count digits
-    for(int i = 0; i < n; i++)
+    for(i = 0; i < n; i++)
     {
-        int digit = (a[i] / place) % 10;
+        digit = (a[i] / place) % 10;
         count[digit]++;
     }
 
-    // Position
-    for(int i = 1; i < 10; i++)
+    for(i = 1; i < 10; i++)
     {
         count[i] = count[i] + count[i - 1];
     }
 
-    // Output array
-    for(int i = n - 1; i >= 0; i--)
+    for(i = n - 1; i >= 0; i--)
     {
-        int digit = (a[i] / place) % 10;
+        digit = (a[i] / place) % 10;
 
         output[count[digit] - 1] = a[i];
 
         count[digit]--;
     }
 
-    // Copy back
-    for(int i = 0; i < n; i++)
+    for(i = 0; i < n; i++)
     {
         a[i] = output[i];
     }
@@ -59,18 +56,19 @@ void radixSort(int a[], int n)
     }
 }
 
-int main()
+void main()
 {
     int a[5] = {170, 45, 75, 90, 802};
+    int i;
+
+    clrscr();
 
     radixSort(a, 5);
 
-    cout << "Sorted array: ";
+    cout << "Sorted Array: ";
 
-    for(int i = 0; i < 5; i++)
-    {
+    for(i = 0; i < 5; i++)
         cout << a[i] << " ";
-    }
 
-    return 0;
+    getch();
 }
